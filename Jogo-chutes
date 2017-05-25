@@ -1,0 +1,57 @@
+def bem_vindo
+	puts "Bem-vindo ao Jogo de adivinhação!"
+	puts "Qual é o seu nome?"
+	nome = gets.strip
+	puts "\n\n\n"
+	puts "Olá, #{nome}" 
+end
+	
+def escolhe_numero_secreto
+	puts "Escolheremos um número de 0 à 200."
+	numero_secreto = 175
+	puts "Pronto Escolhido... Que tal tentar adivinhar o número?"
+	puts "\n\n\n"
+	numero_secreto
+end
+
+def pede_um_numero(chutes, limite_de_tentativas, tentativa)
+	puts "\n"
+	puts "Tente acertar!! Tentativa #{tentativa} de #{limite_de_tentativas}"
+	puts "\n"
+	puts  "Chutes até agora:  "  + chutes.to_s
+	puts "Qual é o seu chute?"
+	chute = gets
+	puts "\n"
+	puts "Será que você acertou. Seu chute é  #{chute}"
+	puts "\n"
+	chute.to_i
+end
+
+def verifica_se_acertou(numero_secreto, chute)
+	acertou = numero_secreto == chute
+	if acertou
+		puts "Wow, você Acertou!!!"
+		return true
+	end
+		
+	puts "Fón fón fón fóóóóónm. Errou, errou feio, errou rude. "
+	maior = numero_secreto > chute.to_i
+	if maior
+		puts "O número secreto é maior."
+	else
+		puts "O número secreto é menor"
+	end
+	false
+end
+
+da_boas_vindas
+
+numero_secreto = escolhe_numero_secreto
+
+limite_de_tentativas = 3
+chutes = []
+for tentativa in 1..limite_de_tentativas
+	chute = pede_um_numero chutes, limite_de_tentativas, tentativa
+	chutes << chute
+	break if verifica_se_acertou numero_secreto, chute
+end
